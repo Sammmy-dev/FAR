@@ -1,0 +1,65 @@
+@import url('https://fonts.googleapis.com/css2?family=Geom:ital,wght@0,300..900;1,300..900&display=swap');
+
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --brand-primary: #cc0000;
+  --brand-dark: #9e0000;
+  --brand-secondary: #b52619;
+  --brand-light: #fff5f5;
+  --text-primary: #1a1a1a;
+  --text-body: #5e3f3a;
+  --bg-page: #f9f9f9;
+  --bg-card: #ffffff;
+  --border: #e8bdb6;
+}
+
+@layer base {
+  * {
+    @apply border-neutral-200;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-surface text-neutral-900 antialiased;
+    font-family: 'Geom', sans-serif;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-semibold tracking-tight;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  /* Sidebar transition */
+  .sidebar-transition {
+    @apply transition-transform duration-300 ease-in-out;
+  }
+
+  /* Brand gradient: 135deg from primary (#9e0000) to primary-container (#cc0000) */
+  .bg-brand-gradient {
+    background: linear-gradient(135deg, #9e0000, #cc0000);
+  }
+
+  /* Glassmorphism: white 80% opacity + 24px blur */
+  .glass {
+    background-color: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+  }
+
+  /* Ghost border: outline-variant at 15% opacity */
+  .border-ghost {
+    border: 1px solid rgba(232, 189, 182, 0.3);
+  }
+}

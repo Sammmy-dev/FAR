@@ -2,7 +2,7 @@ import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import type { IJob } from "@/types";
 
-export const dynamic = "force-dynamic";
+// export const dynamic = "force-dynamic";
 
 interface Props {
   params: { id: string };

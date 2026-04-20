@@ -62,13 +62,15 @@ export default function AdminSidebar({ role }: Props) {
   return (
     <>
       {/* Mobile hamburger */}
-      <button
-        className="fixed top-3 left-3 z-50 rounded-lg bg-white p-2 lg:hidden"
-        onClick={() => setOpen((v) => !v)}
-        aria-label="Toggle menu"
-      >
-        {open ? <HiX className="h-5 w-5 text-neutral-700" /> : <HiMenu className="h-5 w-5 text-neutral-700" />}
-      </button>
+      {!open && (
+        <button
+          className="fixed top-3 left-3 z-50 rounded-lg bg-white p-2 lg:hidden"
+          onClick={() => setOpen(true)}
+          aria-label="Open menu"
+        >
+          <HiMenu className="h-5 w-5 text-neutral-700" />
+        </button>
+      )}
 
       {/* Mobile overlay */}
       {open && (
@@ -81,10 +83,19 @@ export default function AdminSidebar({ role }: Props) {
       {/* Sidebar — desktop: always visible, mobile: slide-in */}
       <aside
         className={cn(
-          "fixed inset-y-0 left-0 z-40 w-56 bg-white transition-transform duration-200 lg:static lg:translate-x-0",
+          "fixed inset-y-0 left-0 z-50 w-56 bg-white transition-transform duration-200 lg:static lg:translate-x-0",
           open ? "translate-x-0" : "-translate-x-full lg:translate-x-0"
         )}
       >
+        <div className="flex justify-end border-b border-neutral-200 p-3 lg:hidden">
+          <button
+            onClick={() => setOpen(false)}
+            aria-label="Close menu"
+            className="rounded-lg p-1 text-neutral-700 hover:bg-surface"
+          >
+            <HiX className="h-5 w-5" />
+          </button>
+        </div>
         {nav}
       </aside>
     </>

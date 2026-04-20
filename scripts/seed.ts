@@ -27,9 +27,12 @@ if (!MONGODB_URI) {
   process.exit(1);
 }
 
-const SEED_EMAIL = process.env.SEED_EMAIL ?? "admin@far.ng";
-const SEED_PASSWORD = process.env.SEED_PASSWORD ?? "ChangeMe123!";
+const SEED_EMAIL = process.env.SEED_EMAIL ?? "ajiboyeadebayo901@gmail.com";
+const SEED_PASSWORD = process.env.SEED_PASSWORD ?? "Aji&2001";
 const SEED_NAME = process.env.SEED_NAME ?? "FAR Super Admin";
+// const SEED_EMAIL = process.env.SEED_EMAIL ?? "admin@far.ng";
+// const SEED_PASSWORD = process.env.SEED_PASSWORD ?? "ChangeMe123!";
+// const SEED_NAME = process.env.SEED_NAME ?? "FAR Super Admin";
 
 async function seed() {
   console.log("🔌  Connecting to MongoDB…");

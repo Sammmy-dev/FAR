@@ -55,8 +55,59 @@ export default function EmployeesTable({ employees, isSuperAdmin }: Props) {
   }
 
   return (
-    <div className="overflow-x-auto rounded bg-surface-lowest">
-      <table className="w-full text-sm">
+    <>
+      <div className="space-y-4 lg:hidden">
+        {list.map((emp) => (
+          <div key={emp._id} className="rounded bg-surface-lowest p-4">
+            <div className="mb-3 flex items-center gap-3">
+              {emp.photoUrl ? (
+                <div className="relative h-10 w-10 overflow-hidden rounded-full border-ghost">
+                  <Image src={emp.photoUrl} alt={emp.name} fill className="object-cover" />
+                </div>
+              ) : (
+                <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full bg-brand-50 text-xs font-bold text-brand-500">
+                  {emp.name.slice(0, 2).toUpperCase()}
+                </div>
+              )}
+              <div>
+                <h3 className="font-medium text-neutral-900">{emp.name}</h3>
+                {emp.email && <p className="text-xs text-neutral-500">{emp.email}</p>}
+              </div>
+            </div>
+
+            <div className="space-y-1 text-xs text-neutral-600">
+              <p>Role: {emp.role}</p>
+              <p>
+                Status:{" "}
+                <span className={`rounded px-2 py-0.5 font-medium uppercase tracking-wide ${STATUS_COLORS[emp.status] ?? "bg-neutral-100 text-neutral-600"}`}>
+                  {EMPLOYEE_STATUS_LABELS[emp.status] ?? emp.status}
+                </span>
+              </p>
+              {isSuperAdmin && <p>Salary: {emp.salary != null ? formatNaira(emp.salary) : "-"}</p>}
+              {isSuperAdmin && <p>FAR Fee: {emp.farFee != null ? formatNaira(emp.farFee) : "-"}</p>}
+            </div>
+
+            <div className="mt-4 flex items-center gap-2">
+              <a
+                href={`/dashboard/employees/${emp._id}/edit`}
+                className="rounded px-2 py-1 text-xs font-medium text-brand-600 hover:bg-brand-50"
+              >
+                Edit
+              </a>
+              <button
+                onClick={() => handleDelete(emp._id, emp.name)}
+                disabled={deleting === emp._id}
+                className="rounded px-2 py-1 text-xs font-medium text-red-600 hover:bg-red-50 disabled:opacity-50"
+              >
+                {deleting === emp._id ? "Deleting..." : "Delete"}
+              </button>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <div className="hidden overflow-x-auto rounded bg-surface-lowest lg:block">
+        <table className="w-full text-sm">
         <thead className="bg-surface text-left text-xs font-semibold uppercase tracking-[0.1em] text-neutral-400">
           <tr>
             <th className="px-4 py-3">Employee</th>
@@ -127,7 +178,8 @@ export default function EmployeesTable({ employees, isSuperAdmin }: Props) {
             );
           })}
         </tbody>
-      </table>
-    </div>
+        </table>
+      </div>
+    </>
   );
 }

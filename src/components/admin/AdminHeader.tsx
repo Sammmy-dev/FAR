@@ -9,10 +9,12 @@ interface Props {
 
 export default function AdminHeader({ user }: Props) {
   return (
-    <header className="flex h-14 items-center justify-between bg-surface-lowest px-6 border-b border-neutral-100">
+    <header className="flex h-14 items-center justify-end bg-surface-lowest px-6 border-b border-neutral-100">
+      {/*
       <p className="text-sm font-medium text-neutral-700">
         Welcome, <span className="font-semibold text-brand-600">{user.name}</span>
       </p>
+      */}
       <div className="flex items-center gap-4">
         <span className="rounded bg-brand-50 px-2.5 py-0.5 text-xs font-semibold uppercase tracking-widest text-brand-600">
           {user.role}

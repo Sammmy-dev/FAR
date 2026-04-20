@@ -27,7 +27,8 @@ export default function JobForm({ clients, job }: Props) {
     type: job?.type ?? "FULL_TIME",
     location: job?.location ?? "",
     description: job?.description ?? "",
-    applyInfo: job?.applyInfo ?? "",
+    qualification: job?.qualification ?? "",
+    applyInfo: job?.applyInfo ?? "EMAIL",
     isVisible: job?.isVisible ?? true,
   });
   const [loading, setLoading] = useState(false);
@@ -114,14 +115,26 @@ export default function JobForm({ clients, job }: Props) {
       </div>
 
       <div>
+        <label className={labelClass}>Qualification</label>
+        <input
+          className={inputClass}
+          value={form.qualification}
+          onChange={(e) => set("qualification", e.target.value)}
+          placeholder="e.g. OND / HND / B.Sc in relevant field"
+        />
+      </div>
+
+      <div>
         <label className={labelClass}>How to Apply *</label>
-        <textarea
-          className={`${inputClass} min-h-[80px] resize-y`}
+        <select
+          className={inputClass}
           required
           value={form.applyInfo}
           onChange={(e) => set("applyInfo", e.target.value)}
-          placeholder="E.g. Send CV to jobs@company.com with subject 'Application – {Job Title}'"
-        />
+        >
+          <option value="EMAIL">Email (flavour.hr.airhis@gmail.com)</option>
+          <option value="WHATSAPP">WhatsApp (+2347075727762)</option>
+        </select>
       </div>
 
       <div className="flex items-center gap-3">

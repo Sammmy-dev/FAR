@@ -15,9 +15,6 @@ interface Props {
 }
 
 export default function JobCard({ job }: Props) {
-  const clientName =
-    typeof job.clientId === "object" ? job.clientId.name : "FAR Client";
-
   return (
     <Link
       href={`/jobs/${job._id}`}
@@ -29,7 +26,6 @@ export default function JobCard({ job }: Props) {
           <h3 className="font-semibold text-neutral-900 group-hover:text-brand-500 transition-colors leading-snug">
             {job.title}
           </h3>
-          <p className="mt-0.5 text-sm text-neutral-500">{clientName}</p>
         </div>
         <span
           className={`flex-shrink-0 rounded px-2.5 py-0.5 text-xs font-medium uppercase tracking-wide ${

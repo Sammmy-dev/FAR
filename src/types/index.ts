@@ -21,6 +21,8 @@ export type UserRole = "SUPER_ADMIN" | "STAFF";
 
 export type JobType = "FULL_TIME" | "PART_TIME" | "CONTRACT" | "INTERNSHIP";
 
+export type ApplyMethod = "WHATSAPP" | "EMAIL";
+
 export type EmployeeStatus = "ACTIVE" | "ON_LEAVE" | "ENDED";
 
 // Plain-object shapes returned from API / server components (no Mongoose docs)
@@ -44,7 +46,8 @@ export interface IJob {
   description: string;
   location?: string;
   type: JobType;
-  applyInfo: string;
+  qualification?: string;
+  applyInfo: ApplyMethod;
   isVisible: boolean;
   clientId: string | IClient;
   createdAt: string;

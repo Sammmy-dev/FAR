@@ -5,20 +5,20 @@ export default function ContactSection() {
     {
       icon: <HiMail className="h-6 w-6" />,
       label: "Email",
-      value: "info@farng.com",
-      href: "mailto:info@farng.com",
+      value: "flavour.hr.airhis@gmail.com",
+      href: "mailto:flavour.hr.airhis@gmail.com",
     },
     {
       icon: <HiPhone className="h-6 w-6" />,
-      label: "Phone",
-      value: "+234 800 000 0000",
-      href: "tel:+2348000000000",
+      label: "WhatsApp",
+      value: "+234 707 572 7762",
+      href: "https://wa.me/2347075727762",
     },
     {
       icon: <HiLocationMarker className="h-6 w-6" />,
       label: "Address",
-      value: "Lagos, Nigeria",
-      href: "https://maps.google.com/?q=Lagos,Nigeria",
+      value: "1st Floor Damilat Building, opp. First Bank, Aregbe Junction, Osogbo, Osun State, Nigeria",
+      href: "https://maps.google.com/?q=Aregbe+Junction+Osogbo+Osun+Nigeria",
     },
   ];
 
@@ -64,7 +64,7 @@ export default function ContactSection() {
               Tell us about the role you&apos;re looking to fill and we&apos;ll get back to you with a shortlist of qualified candidates within 72 hours.
             </p>
             <a
-              href="mailto:hire@farng.com"
+              href="mailto:flavour.hr.airhis@gmail.com"
               className="inline-block rounded bg-white px-6 py-3 text-sm font-semibold text-brand-600 transition-opacity hover:opacity-90"
             >
               Send a Hiring Brief

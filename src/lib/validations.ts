@@ -9,10 +9,10 @@ export const JobSchema = z.object({
   type: z.enum(["FULL_TIME", "PART_TIME", "CONTRACT", "INTERNSHIP"], {
     error: "Invalid job type",
   }),
-  applyInfo: z
-    .string()
-    .min(1, "How to apply info is required")
-    .trim(),
+  qualification: z.string().trim().optional(),
+  applyInfo: z.enum(["WHATSAPP", "EMAIL"], {
+    error: "Invalid apply method",
+  }),
   isVisible: z.boolean().default(true),
   clientId: z.string().min(1, "Client is required"),
 });

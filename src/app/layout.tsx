@@ -5,7 +5,7 @@ import "./globals.css";
 export const metadata: Metadata = {
   title: {
     default: "FAR — Flavour Airhis Resources",
-    template: "%s | FAR",
+    template: "%s | Flavour Airhis Resources",
   },
   description:
     "FAR is a Nigerian HR and staffing agency that recruits and deploys talent for client companies.",

@@ -1,8 +1,10 @@
 import type { Metadata } from "next";
 import JobCard from "@/components/public/JobCard";
 import type { IJob } from "@/types";
+import { connectDB } from "@/lib/db";
+import Job from "@/models/Job";
 
-// export const dynamic = "force-dynamic";
+export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
   title: "Open Positions",
@@ -10,12 +12,12 @@ export const metadata: Metadata = {
 };
 
 async function getVisibleJobs(): Promise<IJob[]> {
-  const baseUrl = process.env.NEXTAUTH_URL;
-  const res = await fetch(`${baseUrl}/api/jobs`, {
-    next: { revalidate: 60 },
-  });
-  if (!res.ok) return [];
-  return res.json();
+  await connectDB();
+  const jobs = await Job.find({ isVisible: true })
+    .populate("clientId", "name")
+    .sort({ createdAt: -1 })
+    .lean();
+  return JSON.parse(JSON.stringify(jobs));
 }
 
 export default async function JobsPage() {

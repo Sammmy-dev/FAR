@@ -1,21 +1,22 @@
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import type { IJob } from "@/types";
+import { connectDB } from "@/lib/db";
+import Job from "@/models/Job";
 
-// export const dynamic = "force-dynamic";
+export const dynamic = "force-dynamic";
 
 interface Props {
   params: { id: string };
 }
 
 async function getJob(id: string): Promise<IJob | null> {
-  const baseUrl = process.env.NEXTAUTH_URL
-    ?? (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : "http://localhost:3000");
-  const res = await fetch(`${baseUrl}/api/jobs/${id}`, {
-    next: { revalidate: 60 },
-  });
-  if (!res.ok) return null;
-  return res.json();
+  await connectDB();
+  const job = await Job.findOne({ _id: id, isVisible: true })
+    .populate("clientId", "name")
+    .lean();
+  if (!job) return null;
+  return JSON.parse(JSON.stringify(job));
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
@@ -30,7 +31,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 export default async function JobDetailPage({ params }: Props) {
   const job = await getJob(params.id);
 
-  if (!job || !job.isVisible) {
+  if (!job) {
     notFound();
   }
 

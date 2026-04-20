@@ -9,7 +9,10 @@ export const metadata: Metadata = {
   },
   description:
     "FAR is a Nigerian HR and staffing agency that recruits and deploys talent for client companies.",
-  metadataBase: new URL(process.env.NEXTAUTH_URL ?? "http://localhost:3000"),
+  metadataBase: new URL(
+    process.env.NEXTAUTH_URL
+      || (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : "http://localhost:3000")
+  ),
 };
 
 export default function RootLayout({

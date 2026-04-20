@@ -10,7 +10,8 @@ export const metadata: Metadata = {
 };
 
 async function getVisibleJobs(): Promise<IJob[]> {
-  const baseUrl = process.env.NEXTAUTH_URL ?? "http://localhost:3000";
+  const baseUrl = process.env.NEXTAUTH_URL
+    ?? (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : "http://localhost:3000");
   const res = await fetch(`${baseUrl}/api/jobs`, {
     next: { revalidate: 60 },
   });

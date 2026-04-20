@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import JobCard from "@/components/public/JobCard";
 import type { IJob } from "@/types";
 
+export const dynamic = "force-dynamic";
+
 export const metadata: Metadata = {
   title: "Open Positions",
   description: "Browse all current job openings available through FAR.",

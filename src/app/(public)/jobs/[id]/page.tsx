@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import type { IJob } from "@/types";
 import { connectDB } from "@/lib/db";
 import Job from "@/models/Job";
+import "@/models/Client";
 
 export const dynamic = "force-dynamic";
 

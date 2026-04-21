@@ -11,12 +11,16 @@ interface Props {
 }
 
 async function getJob(id: string): Promise<IJob | null> {
-  await connectDB();
-  const job = await Job.findOne({ _id: id, isVisible: true })
-    .populate("clientId", "name")
-    .lean();
-  if (!job) return null;
-  return JSON.parse(JSON.stringify(job));
+  try {
+    await connectDB();
+    const job = await Job.findOne({ _id: id, isVisible: true })
+      .populate("clientId", "name")
+      .lean();
+    if (!job) return null;
+    return JSON.parse(JSON.stringify(job));
+  } catch {
+    return null;
+  }
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {

@@ -4,7 +4,7 @@ import type { IJob } from "@/types";
 import { connectDB } from "@/lib/db";
 import Job from "@/models/Job";
 
-// export const dynamic = "force-dynamic";
+export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
   title: "Open Positions",

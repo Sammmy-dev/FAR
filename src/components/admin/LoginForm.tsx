@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 export default function LoginForm() {
   const router = useRouter();
@@ -73,6 +74,11 @@ export default function LoginForm() {
       >
         {loading ? "Signing in…" : "Sign in"}
       </button>
+      <p className="text-center text-sm text-neutral-500">
+        <Link href="/home" className="hover:text-brand-600 transition-colors">
+          ← Back to site
+        </Link>
+      </p>
     </form>
   );
 }

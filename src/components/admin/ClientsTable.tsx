@@ -88,8 +88,8 @@ export default function ClientsTable({ clients }: Props) {
         ))}
       </div>
 
-      <div className="hidden overflow-hidden rounded bg-surface-lowest lg:block">
-        <table className="w-full text-sm">
+      <div className="hidden overflow-x-auto rounded bg-surface-lowest lg:block">
+        <table className="min-w-[920px] whitespace-nowrap text-sm w-full">
         <thead className="bg-surface text-left text-xs font-semibold uppercase tracking-[0.1em] text-neutral-400">
           <tr>
             <th className="px-4 py-3">Logo</th>
@@ -101,7 +101,7 @@ export default function ClientsTable({ clients }: Props) {
         </thead>
         <tbody className="divide-y-0">
           {list.map((client) => (
-            <tr key={client._id} className="transition-colors hover:bg-surface">
+            <tr key={client._id} className="odd:bg-surface-lowest even:bg-surface transition-colors hover:bg-surface">
               <td className="px-4 py-4">
                 {client.logoUrl ? (
                   <div className="relative h-9 w-9 overflow-hidden rounded border-ghost">

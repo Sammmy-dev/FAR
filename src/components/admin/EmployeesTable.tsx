@@ -121,7 +121,7 @@ export default function EmployeesTable({ employees, isSuperAdmin }: Props) {
         <tbody className="divide-y-0">
           {list.map((emp) => {
             return (
-              <tr key={emp._id} className="transition-colors hover:bg-surface">
+              <tr key={emp._id} className="odd:bg-surface-lowest even:bg-surface transition-colors hover:bg-surface">
                 <td className="px-4 py-4">
                   <div className="flex items-center gap-3">
                     {emp.photoUrl ? (

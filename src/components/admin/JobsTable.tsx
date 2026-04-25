@@ -123,7 +123,7 @@ export default function JobsTable({ jobs }: Props) {
       </div>
 
       <div className="hidden overflow-x-auto rounded bg-surface-lowest lg:block">
-        <table className="min-w-full text-sm">
+        <table className="min-w-[980px] whitespace-nowrap text-sm w-full">
         <thead className="bg-surface text-left text-xs font-semibold uppercase tracking-[0.1em] text-neutral-400">
           <tr>
             <th className="px-4 py-3">Title</th>
@@ -139,7 +139,7 @@ export default function JobsTable({ jobs }: Props) {
           {jobs.map((job) => {
             const client = typeof job.clientId === "object" ? job.clientId as IClient : null;
             return (
-              <tr key={job._id} className="transition-colors hover:bg-surface">
+              <tr key={job._id} className="odd:bg-surface-lowest even:bg-surface transition-colors hover:bg-surface">
                 <td className="px-4 py-3.5 font-medium text-neutral-900">{job.title}</td>
                 <td className="px-4 py-3.5 text-neutral-600">{client?.name ?? "—"}</td>
                 <td className="px-4 py-3.5">

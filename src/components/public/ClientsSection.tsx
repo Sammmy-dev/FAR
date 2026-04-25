@@ -1,17 +1,14 @@
 import Image from "next/image";
-import { connectDB } from "@/lib/db";
-import Client from "@/models/Client";
-import type { IClient } from "@/types";
 
-async function getClients(): Promise<IClient[]> {
-  await connectDB();
-  const clients = await Client.find().select("name logoUrl").sort({ name: 1 }).lean();
-  return JSON.parse(JSON.stringify(clients));
-}
+const PARTNER_LOGOS = [
+  { name: "Partner 1", src: "/partner1.jpg" },
+  { name: "Partner 2", src: "/partner2.jpg" },
+  { name: "Partner 3", src: "/partner3.jpg" },
+  { name: "Partner 4", src: "/partner4.jpg" },
+  { name: "Partner 5", src: "/partner5.png" },
+];
 
 export default async function ClientsSection() {
-  const clients = await getClients();
-
   return (
     <section id="clients" className="py-24 bg-surface">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -27,35 +24,25 @@ export default async function ClientsSection() {
           </p>
         </div>
 
-        {clients.length === 0 ? (
-          <p className="text-center text-sm text-neutral-400">Client logos coming soon.</p>
-        ) : (
-          <div className="flex flex-wrap items-center justify-center gap-8">
-            {clients.map((client) => (
-              <div
-                key={client._id}
-                className="flex h-16 w-36 items-center justify-center rounded bg-surface-lowest px-4 border-ghost"
-                title={client.name}
-              >
-                {client.logoUrl ? (
-                  <div className="relative h-10 w-28">
-                    <Image
-                      src={client.logoUrl}
-                      alt={client.name}
-                      fill
-                      className="object-contain"
-                      sizes="112px"
-                    />
-                  </div>
-                ) : (
-                  <span className="text-sm font-bold text-neutral-600">
-                    {client.name}
-                  </span>
-                )}
+        <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-5">
+          {PARTNER_LOGOS.map((partner) => (
+            <div
+              key={partner.src}
+              className="flex h-24 items-center justify-center rounded bg-surface-lowest p-3 border-ghost"
+              title={partner.name}
+            >
+              <div className="relative h-full w-full">
+                <Image
+                  src={partner.src}
+                  alt={partner.name}
+                  fill
+                  className="object-contain"
+                  sizes="(max-width: 640px) 45vw, (max-width: 1024px) 30vw, 18vw"
+                />
               </div>
-            ))}
-          </div>
-        )}
+            </div>
+          ))}
+        </div>
       </div>
     </section>
   );

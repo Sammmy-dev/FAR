@@ -79,7 +79,7 @@ export default async function JobDetailPage({ params }: Props) {
         </h2>
         {job.applyInfo === "WHATSAPP" ? (
           <a
-            href="https://wa.me/2348062451204"
+            href="https://wa.me/2347075727762"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 rounded-lg bg-green-500 px-6 py-3 text-sm font-semibold text-white hover:bg-green-600 transition-colors"

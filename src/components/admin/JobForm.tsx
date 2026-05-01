@@ -133,7 +133,7 @@ export default function JobForm({ clients, job }: Props) {
           onChange={(e) => set("applyInfo", e.target.value)}
         >
           <option value="EMAIL">Email (flavour.hr.airhis@gmail.com)</option>
-          <option value="WHATSAPP">WhatsApp (+2348062451204)</option>
+          <option value="WHATSAPP">WhatsApp (+2347075727762)</option>
         </select>
       </div>
 

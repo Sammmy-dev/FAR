@@ -11,14 +11,13 @@ export default function HeroSection() {
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="max-w-2xl">
           <p className="mb-4 text-xs font-semibold uppercase tracking-[0.15em] text-white/70">
-            Nigeria&apos;s Trusted Staffing Partner
+            Nigeria&apos;s Trusted Business Partner
           </p>
           <h1 className="mb-6 text-5xl font-extrabold leading-tight sm:text-6xl lg:text-7xl">
-            Connecting Businesses with Exceptional Talent
+            Powering Businesses Through People &amp; Strategy
           </h1>
           <p className="mb-10 text-lg text-white/80 sm:text-xl leading-relaxed">
-            FAR recruits, vets, and deploys skilled professionals to client companies across Nigeria.
-            Whether you&apos;re hiring or job-seeking, we&apos;re your gateway to opportunity.
+            FAR delivers talent recruitment, workforce deployment, project management, training, and business consulting — everything your organisation needs to grow and operate at its best.
           </p>
           <div className="flex flex-wrap gap-4">
             <Link

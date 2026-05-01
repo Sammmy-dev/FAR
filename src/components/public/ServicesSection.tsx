@@ -1,41 +1,48 @@
-import { HiUserGroup, HiOfficeBuilding, HiShieldCheck, HiLibrary, HiLightningBolt, HiAcademicCap } from "react-icons/hi";
+import {
+  HiUserGroup,
+  HiOfficeBuilding,
+  HiClipboardList,
+  HiAcademicCap,
+  HiTrendingUp,
+  HiLibrary,
+} from "react-icons/hi";
 
 const SERVICES = [
   {
     icon: <HiUserGroup className="h-7 w-7" />,
     title: "Talent Recruitment",
     description:
-      "We source, screen, and shortlist top candidates tailored to your specific role requirements — saving you time and reducing mis-hires.",
+      "We source, screen, and shortlist top candidates tailored to your specific role requirements — saving you time and reducing mis-hires across all industries.",
   },
   {
     icon: <HiOfficeBuilding className="h-7 w-7" />,
     title: "Workforce Deployment",
     description:
-      "FAR acts as the employer of record, deploying staff directly to your business so you benefit from skilled labour without the administrative overhead.",
+      "FAR acts as the employer of record, deploying skilled staff directly to your business so you benefit from expert labour without the administrative overhead.",
   },
   {
-    icon: <HiShieldCheck className="h-7 w-7" />,
-    title: "Compliance & Payroll",
+    icon: <HiClipboardList className="h-7 w-7" />,
+    title: "Project Management",
     description:
-      "We manage employment contracts, statutory deductions (PAYE, pension, NHF), and payroll processing — ensuring your workforce stays compliant.",
-  },
-  {
-    icon: <HiLibrary className="h-7 w-7" />,
-    title: "HR Advisory",
-    description:
-      "Need guidance on workforce strategy, org structure, or performance frameworks? Our HR experts provide actionable advice for businesses of all sizes.",
-  },
-  {
-    icon: <HiLightningBolt className="h-7 w-7" />,
-    title: "Executive Search",
-    description:
-      "For C-suite and director-level positions, our dedicated executive search practice identifies passive talent that won't appear on a job board.",
+      "From initiation to delivery, our project management professionals plan, coordinate, and execute complex initiatives — keeping your projects on scope, time, and budget.",
   },
   {
     icon: <HiAcademicCap className="h-7 w-7" />,
     title: "Training & Development",
     description:
-      "We run tailored training programmes — technical, soft-skills, and leadership — to upskill your existing workforce and newly deployed staff.",
+      "We design and deliver tailored training programmes — technical skills, soft skills, and leadership development — to upskill your workforce and drive performance.",
+  },
+  {
+    icon: <HiTrendingUp className="h-7 w-7" />,
+    title: "Business Management",
+    description:
+      "Our business management consultants help organisations streamline operations, optimise processes, and implement strategies that unlock sustainable growth.",
+  },
+  {
+    icon: <HiLibrary className="h-7 w-7" />,
+    title: "HR Advisory",
+    description:
+      "Need expert guidance on workforce strategy, organisational design, or compliance? Our HR advisors provide actionable insights tailored to your business stage.",
   },
 ];
 
@@ -46,10 +53,10 @@ export default function ServicesSection() {
         <div className="mb-16 text-center">
           <p className="mb-3 text-xs font-semibold uppercase tracking-[0.15em] text-brand-500">What We Do</p>
           <h2 className="text-4xl font-extrabold text-neutral-900 sm:text-5xl">
-            End-to-End HR &amp; Staffing Solutions
+            Comprehensive Business Solutions
           </h2>
           <p className="mt-6 mx-auto max-w-2xl text-neutral-700">
-            From first-round interviews to ongoing payroll management, FAR covers every stage of the talent lifecycle.
+            From talent acquisition and workforce deployment to project management and business consulting, FAR delivers end-to-end solutions that drive organisational success.
           </p>
         </div>
 

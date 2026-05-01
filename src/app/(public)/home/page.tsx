@@ -4,6 +4,7 @@ import AboutSection from "@/components/public/AboutSection";
 import ServicesSection from "@/components/public/ServicesSection";
 import FeaturedJobs from "@/components/public/FeaturedJobs";
 import ClientsSection from "@/components/public/ClientsSection";
+import TestimonialsSection from "@/components/public/TestimonialsSection";
 import ContactSection from "@/components/public/ContactSection";
 
 export const metadata: Metadata = {
@@ -20,6 +21,7 @@ export default function HomePage() {
       <ServicesSection />
       <FeaturedJobs />
       <ClientsSection />
+      <TestimonialsSection />
       <ContactSection />
     </>
   );

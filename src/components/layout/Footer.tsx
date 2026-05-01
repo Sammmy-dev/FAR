@@ -42,8 +42,8 @@ export default function Footer() {
                 </a>
               </li>
               <li>
-                <a href="https://wa.me/2347075727762" target="_blank" rel="noopener noreferrer" className="hover:text-brand-400 transition-colors">
-                  +234 707 572 7762
+                <a href="https://wa.me/2348062451204" target="_blank" rel="noopener noreferrer" className="hover:text-brand-400 transition-colors">
+                  +234 806 245 1204
                 </a>
               </li>
               <li className="leading-snug text-neutral-400">

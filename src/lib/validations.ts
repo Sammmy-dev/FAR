@@ -89,3 +89,62 @@ export const FINANCIAL_FIELDS = [
 ] as const;
 
 export type FinancialFieldKey = (typeof FINANCIAL_FIELDS)[number];
+
+// ─── Assessments ─────────────────────────────────────────────────────────────
+
+const AssessmentMcqQuestionSchema = z.object({
+  type: z.literal("MCQ"),
+  prompt: z.string().min(1, "Question prompt is required").trim(),
+  options: z.tuple([
+    z.string().min(1, "Option A is required").trim(),
+    z.string().min(1, "Option B is required").trim(),
+    z.string().min(1, "Option C is required").trim(),
+    z.string().min(1, "Option D is required").trim(),
+  ]),
+  correctIndex: z
+    .number()
+    .int("Correct answer must be a whole number")
+    .min(0)
+    .max(3),
+});
+
+const AssessmentOpenEndedQuestionSchema = z.object({
+  type: z.literal("OPEN_ENDED"),
+  prompt: z.string().min(1, "Question prompt is required").trim(),
+  expectedAnswer: z.string().trim().optional(),
+});
+
+const AssessmentQuestionSchema = z.discriminatedUnion("type", [
+  AssessmentMcqQuestionSchema,
+  AssessmentOpenEndedQuestionSchema,
+]);
+
+export const AssessmentSchema = z.object({
+  title: z.string().min(1, "Assessment title is required").trim(),
+  description: z.string().trim().optional(),
+  durationMinutes: z.number().int().min(1).max(180).default(10),
+  isActive: z.boolean().default(true),
+  questions: z.array(AssessmentQuestionSchema).min(1, "Add at least one question"),
+});
+
+export const AssessmentUpdateSchema = AssessmentSchema.partial();
+
+export const AssessmentSubmitSchema = z.object({
+  candidateName: z.string().min(1, "Candidate name is required").trim(),
+  candidateEmail: z
+    .union([z.string().email("Invalid email address"), z.literal("")])
+    .optional(),
+  responses: z
+    .array(
+      z.object({
+        questionType: z.enum(["MCQ", "OPEN_ENDED"]),
+        selectedIndex: z.number().int().min(0).max(3).optional(),
+        typedAnswer: z.string().trim().optional(),
+      })
+    )
+    .min(1),
+});
+
+export type AssessmentInput = z.infer<typeof AssessmentSchema>;
+export type AssessmentUpdateInput = z.infer<typeof AssessmentUpdateSchema>;
+export type AssessmentSubmitInput = z.infer<typeof AssessmentSubmitSchema>;

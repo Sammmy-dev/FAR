@@ -4,7 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
 import Image from "next/image";
-import { HiViewGrid, HiBriefcase, HiOfficeBuilding, HiUsers, HiMenu, HiX } from "react-icons/hi";
+import { HiViewGrid, HiBriefcase, HiOfficeBuilding, HiUsers, HiMenu, HiX, HiClipboardList } from "react-icons/hi";
 import { cn } from "@/lib/utils";
 import type { UserRole } from "@/types";
 
@@ -17,6 +17,7 @@ const NAV_ITEMS = [
   { label: "Jobs", href: "/dashboard/jobs", icon: HiBriefcase },
   { label: "Clients", href: "/dashboard/clients", icon: HiOfficeBuilding },
   { label: "Employees", href: "/dashboard/employees", icon: HiUsers },
+  { label: "Assessments", href: "/dashboard/assessments", icon: HiClipboardList },
 ];
 
 export default function AdminSidebar({ role }: Props) {

@@ -11,8 +11,8 @@ export default function ContactSection() {
     {
       icon: <HiPhone className="h-6 w-6" />,
       label: "WhatsApp",
-      value: "+234 707 572 7762",
-      href: "https://wa.me/2347075727762",
+      value: "+234 806 245 1204",
+      href: "https://wa.me/2348062451204",
     },
     {
       icon: <HiLocationMarker className="h-6 w-6" />,

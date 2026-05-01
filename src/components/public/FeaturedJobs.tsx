@@ -3,6 +3,9 @@ import { connectDB } from "@/lib/db";
 import Job from "@/models/Job";
 import JobCard from "@/components/public/JobCard";
 import type { IJob } from "@/types";
+import "@/models/Client";
+
+export const dynamic = "force-dynamic";  
 
 async function getFeaturedJobs(): Promise<IJob[]> {
   await connectDB();

@@ -84,6 +84,67 @@ export interface IUser {
   updatedAt: string;
 }
 
+export interface IAssessmentQuestion {
+  type: "MCQ" | "OPEN_ENDED";
+  prompt: string;
+  options?: [string, string, string, string];
+  correctIndex?: number;
+  expectedAnswer?: string;
+}
+
+export interface IAssessment {
+  _id: string;
+  title: string;
+  description?: string;
+  durationMinutes: number;
+  isActive: boolean;
+  questions: IAssessmentQuestion[];
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface IAssessmentPublicQuestion {
+  type: "MCQ" | "OPEN_ENDED";
+  prompt: string;
+  options?: [string, string, string, string];
+}
+
+export interface IAssessmentPublic {
+  _id: string;
+  title: string;
+  description?: string;
+  durationMinutes: number;
+  isActive: boolean;
+  questions: IAssessmentPublicQuestion[];
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface IAssessmentAttempt {
+  _id: string;
+  assessmentId: string;
+  candidateName: string;
+  candidateEmail?: string;
+  responses: {
+    questionPrompt: string;
+    questionType: "MCQ" | "OPEN_ENDED";
+    selectedIndex?: number;
+    selectedOption?: string;
+    typedAnswer?: string;
+    correctIndex?: number;
+    correctOption?: string;
+    expectedAnswer?: string;
+    isCorrect?: boolean;
+  }[];
+  // Legacy field for old submissions
+  answers: number[];
+  score: number;
+  total: number;
+  submittedAt: string;
+  createdAt: string;
+  updatedAt: string;
+}
+
 // Dashboard stats shape
 export interface DashboardStats {
   totalClients: number;

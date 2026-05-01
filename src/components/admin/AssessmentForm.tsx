@@ -82,7 +82,7 @@ export default function AssessmentForm({ assessment }: Props) {
     setQuestions((q) =>
       q.map((question, i) => {
         if (i !== qIdx) return question;
-        const options = [...question.options] as [string, string, string, string];
+        const options = [...(question.options ?? ["", "", "", ""])] as [string, string, string, string];
         options[oIdx] = value;
         return { ...question, options };
       })

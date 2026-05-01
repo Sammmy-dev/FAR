@@ -3,6 +3,7 @@ import { connectDB } from "@/lib/db";
 import Assessment from "@/models/Assessment";
 import AssessmentAttempt from "@/models/AssessmentAttempt";
 import { AssessmentSubmitSchema } from "@/lib/validations";
+import type { IAssessment } from "@/types";
 
 interface Params {
   params: { id: string };
@@ -23,7 +24,7 @@ export async function POST(req: Request, { params }: Params) {
   await connectDB();
 
   try {
-    const assessment = await Assessment.findOne({ _id: params.id, isActive: true }).lean();
+    const assessment = (await Assessment.findOne({ _id: params.id, isActive: true }).lean()) as IAssessment | null;
     if (!assessment) {
       return NextResponse.json({ error: "Assessment not found" }, { status: 404 });
     }

@@ -5,7 +5,7 @@ import { connectDB } from "@/lib/db";
 import Assessment from "@/models/Assessment";
 import AssessmentAttempt from "@/models/AssessmentAttempt";
 import { formatDate } from "@/lib/utils";
-import type { IAssessmentAttempt } from "@/types";
+import type { IAssessmentAttempt, IAssessment } from "@/types";
 import { Fragment } from "react";
 
 export const metadata: Metadata = { title: "Assessment Results" };
@@ -17,7 +17,7 @@ interface Props {
 export default async function AssessmentAttemptsPage({ params }: Props) {
   await connectDB();
 
-  let assessment;
+  let assessment: IAssessment | null = null;
   let attempts: IAssessmentAttempt[] = [];
 
   try {
@@ -51,6 +51,7 @@ export default async function AssessmentAttemptsPage({ params }: Props) {
         questionType,
         selectedIndex: selectedIndex >= 0 ? selectedIndex : undefined,
         selectedOption,
+        typedAnswer: undefined as string | undefined,
         correctIndex: question.correctIndex,
         correctOption:
           typeof question.correctIndex === "number"

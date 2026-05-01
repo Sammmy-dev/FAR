@@ -255,7 +255,7 @@ export default function AboutPage() {
               <div className="mx-auto mb-5 flex h-28 w-28 items-center justify-center overflow-hidden rounded-full bg-white/20 ring-4 ring-white/30">
                 <HiUser className="h-20 w-20 text-white/60" />
               </div>
-              <h3 className="mb-1 text-xl font-extrabold">Lead Consultant</h3>
+              <h3 className="mb-1 text-xl font-extrabold">Victor Ehis Usifor</h3>
               <p className="mb-3 text-sm font-semibold uppercase tracking-widest text-white/70">
                 Lead Consultant
               </p>
@@ -269,17 +269,17 @@ export default function AboutPage() {
           <div className="grid gap-6 sm:grid-cols-3">
             {[
               {
-                name: "HR Assistant",
+                name: "Esther Olagoke",
                 description:
                   "Supports talent sourcing and candidate screening, ensuring every shortlist meets the highest quality standards.",
               },
               {
-                name: "HR Assistant",
+                name: "Samuel Ajiboye",
                 description:
                   "Coordinates employee onboarding and deployment logistics, keeping client engagements running smoothly.",
               },
               {
-                name: "HR Assistant",
+                name: "Comfort John Musa",
                 description:
                   "Manages training programme scheduling and development tracking, helping deployed staff grow in their roles.",
               },

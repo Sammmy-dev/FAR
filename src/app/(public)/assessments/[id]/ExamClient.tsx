@@ -23,7 +23,6 @@ export default function ExamClient({ assessment }: Props) {
   const [candidateEmail, setCandidateEmail] = useState("");
   const [started, setStarted] = useState(false);
   const [submitted, setSubmitted] = useState(false);
-  const [result, setResult] = useState<{ score: number; total: number } | null>(null);
   const [submitting, setSubmitting] = useState(false);
 
   const handleSubmit = useCallback(
@@ -67,7 +66,6 @@ export default function ExamClient({ assessment }: Props) {
           return;
         }
 
-        setResult({ score: data.score, total: data.total });
         setSubmitted(true);
       } catch {
         toast.error("Network error. Please try again.");
@@ -151,29 +149,20 @@ export default function ExamClient({ assessment }: Props) {
   }
 
   // ── Result screen ──────────────────────────────────────────────────────────
-  if (submitted && result) {
-    const pct = Math.round((result.score / result.total) * 100);
-    const passed = pct >= 50;
+  if (submitted) {
     return (
       <div className="mx-auto max-w-md rounded-xl border border-neutral-200 bg-white p-10 text-center">
-        <div
-          className={`mx-auto mb-4 flex h-20 w-20 items-center justify-center rounded-full text-2xl font-extrabold ${
-            passed
-              ? "bg-green-100 text-green-700"
-              : "bg-red-100 text-red-600"
-          }`}
-        >
-          {pct}%
+        <div className="mx-auto mb-4 flex h-20 w-20 items-center justify-center rounded-full bg-green-100 text-green-700">
+          <svg className="h-10 w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+            <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+          </svg>
         </div>
-        <h2 className="mb-1 text-2xl font-bold text-neutral-900">
-          {passed ? "Well done!" : "Keep practising"}
-        </h2>
+        <h2 className="mb-1 text-2xl font-bold text-neutral-900">Submitted!</h2>
         <p className="text-neutral-600">
-          You scored <strong>{result.score}</strong> out of{" "}
-          <strong>{result.total}</strong>.
+          Thank you, <strong>{candidateName}</strong>. Your assessment has been received.
         </p>
         <p className="mt-1 text-sm text-neutral-500">
-          Your result has been recorded and will be reviewed by our team.
+          Your result will be reviewed by our team and you will be contacted.
         </p>
         <a
           href="/assessments"

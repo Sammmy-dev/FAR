@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useRef } from "react";
 import toast from "react-hot-toast";
 import type { IAssessmentPublic } from "@/types";
 
@@ -24,6 +24,11 @@ export default function ExamClient({ assessment }: Props) {
   const [started, setStarted] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [submitting, setSubmitting] = useState(false);
+
+  // Always-fresh ref so the timer effect never depends on handleSubmit
+  const handleSubmitRef = useRef<(force?: boolean) => Promise<void>>(async () => {});
+  // Prevents the timer from triggering auto-submit more than once
+  const autoSubmittedRef = useRef(false);
 
   const handleSubmit = useCallback(
     async (force = false) => {
@@ -76,16 +81,22 @@ export default function ExamClient({ assessment }: Props) {
     [responses, assessment._id, assessment.questions, candidateName, candidateEmail]
   );
 
-  // Countdown timer — auto-submit when time runs out
+  // Keep the ref in sync with the latest handleSubmit closure
+  handleSubmitRef.current = handleSubmit;
+
+  // Countdown timer — auto-submit when time runs out (force = true bypasses unanswered check)
   useEffect(() => {
     if (!started || submitted) return;
     if (timeLeft <= 0) {
-      handleSubmit(true);
+      if (!autoSubmittedRef.current) {
+        autoSubmittedRef.current = true;
+        handleSubmitRef.current(true);
+      }
       return;
     }
     const id = setInterval(() => setTimeLeft((t) => t - 1), 1000);
     return () => clearInterval(id);
-  }, [started, submitted, timeLeft, handleSubmit]);
+  }, [started, submitted, timeLeft]);
 
   const minutes = String(Math.floor(timeLeft / 60)).padStart(2, "0");
   const seconds = String(timeLeft % 60).padStart(2, "0");

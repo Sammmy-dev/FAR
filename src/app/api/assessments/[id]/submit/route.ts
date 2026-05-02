@@ -32,33 +32,26 @@ export async function POST(req: Request, { params }: Params) {
     const total = assessment.questions.length;
     const responses = parsed.data.responses;
 
-    if (responses.length !== total) {
-      return NextResponse.json(
-        { error: "Please answer all questions before submitting." },
-        { status: 400 }
-      );
-    }
-
     let score = 0;
     const detailedResponses = assessment.questions.map((question, index) => {
       const response = responses[index];
       const questionType = question.type ?? "MCQ";
 
       if (questionType === "MCQ") {
-        if (typeof response.selectedIndex !== "number") {
-          throw new Error("INVALID_MCQ_ANSWER");
-        }
-        const selectedOption = question.options?.[response.selectedIndex] ?? "";
+        // Treat unanswered (e.g. timer expired) as skipped — score 0, no error
+        const selectedIndex = typeof response.selectedIndex === "number" ? response.selectedIndex : null;
         const correctIndex = question.correctIndex;
         const isCorrect =
-          typeof correctIndex === "number" && response.selectedIndex === correctIndex;
+          selectedIndex !== null &&
+          typeof correctIndex === "number" &&
+          selectedIndex === correctIndex;
         if (isCorrect) score += 1;
 
         return {
           questionPrompt: question.prompt,
           questionType,
-          selectedIndex: response.selectedIndex,
-          selectedOption,
+          selectedIndex: selectedIndex ?? undefined,
+          selectedOption: selectedIndex !== null ? (question.options?.[selectedIndex] ?? "") : "(skipped)",
           correctIndex,
           correctOption:
             typeof correctIndex === "number" ? question.options?.[correctIndex] : undefined,
@@ -66,13 +59,11 @@ export async function POST(req: Request, { params }: Params) {
         };
       }
 
+      // Open-ended — treat empty as skipped
       const typedAnswer = (response.typedAnswer ?? "").trim();
-      if (!typedAnswer) {
-        throw new Error("INVALID_OPEN_ENDED_ANSWER");
-      }
-
       const expectedAnswer = (question.expectedAnswer ?? "").trim();
       const isCorrect =
+        typedAnswer.length > 0 &&
         expectedAnswer.length > 0 &&
         typedAnswer.toLowerCase() === expectedAnswer.toLowerCase();
       if (isCorrect) score += 1;
@@ -80,7 +71,7 @@ export async function POST(req: Request, { params }: Params) {
       return {
         questionPrompt: question.prompt,
         questionType,
-        typedAnswer,
+        typedAnswer: typedAnswer || "(skipped)",
         expectedAnswer: expectedAnswer || undefined,
         isCorrect,
       };
@@ -106,19 +97,7 @@ export async function POST(req: Request, { params }: Params) {
       total,
       percentage: Math.round((score / total) * 100),
     });
-  } catch (error) {
-    if (error instanceof Error && error.message === "INVALID_MCQ_ANSWER") {
-      return NextResponse.json(
-        { error: "Please choose an option for every multiple-choice question." },
-        { status: 400 }
-      );
-    }
-    if (error instanceof Error && error.message === "INVALID_OPEN_ENDED_ANSWER") {
-      return NextResponse.json(
-        { error: "Please type an answer for every open-ended question." },
-        { status: 400 }
-      );
-    }
-    return NextResponse.json({ error: "Assessment not found" }, { status: 404 });
+  } catch {
+    return NextResponse.json({ error: "Something went wrong. Please try again." }, { status: 500 });
   }
 }

@@ -12,7 +12,7 @@ async function getFeaturedJobs(): Promise<IJob[]> {
   const jobs = await Job.find({ isVisible: true })
     .populate("clientId", "name")
     .sort({ createdAt: -1 })
-    .limit(6)
+    .limit(3)
     .lean();
   return JSON.parse(JSON.stringify(jobs));
 }
@@ -29,7 +29,7 @@ export default async function FeaturedJobs() {
               Opportunities
             </p>
             <h2 className="text-4xl font-extrabold text-neutral-900 sm:text-5xl">
-              Featured Open Positions
+              Latest Open Positions
             </h2>
           </div>
           <Link

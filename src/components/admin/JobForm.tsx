@@ -28,6 +28,8 @@ export default function JobForm({ clients, job }: Props) {
     location: job?.location ?? "",
     description: job?.description ?? "",
     qualification: job?.qualification ?? "",
+    requirements: job?.requirements ?? "",
+    salary: job?.salary?.toString() ?? "",
     applyInfo: job?.applyInfo ?? "EMAIL",
     isVisible: job?.isVisible ?? true,
   });
@@ -45,10 +47,15 @@ export default function JobForm({ clients, job }: Props) {
     const method = isEdit ? "PATCH" : "POST";
 
     try {
+      const payload = {
+        ...form,
+        salary: form.salary ? Number(form.salary) : undefined,
+      };
+
       const res = await fetch(url, {
         method,
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(form),
+        body: JSON.stringify(payload),
       });
 
       if (!res.ok) {
@@ -121,6 +128,28 @@ export default function JobForm({ clients, job }: Props) {
           value={form.qualification}
           onChange={(e) => set("qualification", e.target.value)}
           placeholder="e.g. OND / HND / B.Sc in relevant field"
+        />
+      </div>
+
+      <div>
+        <label className={labelClass}>Requirements</label>
+        <textarea
+          className={`${inputClass} min-h-[120px] resize-y`}
+          value={form.requirements}
+          onChange={(e) => set("requirements", e.target.value)}
+          placeholder="Preferred skills, experience, certifications, or other requirements"
+        />
+      </div>
+
+      <div>
+        <label className={labelClass}>Salary (₦)</label>
+        <input
+          className={inputClass}
+          type="number"
+          min="0"
+          value={form.salary}
+          onChange={(e) => set("salary", e.target.value)}
+          placeholder="e.g. 200000"
         />
       </div>
 

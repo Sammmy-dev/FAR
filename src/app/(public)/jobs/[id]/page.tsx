@@ -4,6 +4,7 @@ import type { IJob } from "@/types";
 import { connectDB } from "@/lib/db";
 import Job from "@/models/Job";
 import "@/models/Client";
+import { formatNaira } from "@/lib/utils";
 
 export const dynamic = "force-dynamic";
 
@@ -70,6 +71,20 @@ export default async function JobDetailPage({ params }: Props) {
         <div className="mt-8 rounded-xl border border-neutral-200 bg-neutral-50 p-6">
           <h2 className="mb-2 text-base font-semibold text-neutral-900">Qualification</h2>
           <p className="text-sm text-neutral-700">{job.qualification}</p>
+        </div>
+      )}
+
+      {job.requirements && (
+        <div className="mt-8 rounded-xl border border-neutral-200 bg-neutral-50 p-6">
+          <h2 className="mb-2 text-base font-semibold text-neutral-900">Requirements</h2>
+          <p className="text-sm text-neutral-700 whitespace-pre-wrap">{job.requirements}</p>
+        </div>
+      )}
+
+      {typeof job.salary === "number" && (
+        <div className="mt-8 rounded-xl border border-neutral-200 bg-neutral-50 p-6">
+          <h2 className="mb-2 text-base font-semibold text-neutral-900">Salary</h2>
+          <p className="text-sm text-neutral-700">{formatNaira(job.salary)}</p>
         </div>
       )}
 

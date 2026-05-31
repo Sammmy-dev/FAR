@@ -10,6 +10,8 @@ export const JobSchema = z.object({
     error: "Invalid job type",
   }),
   qualification: z.string().trim().optional(),
+  requirements: z.string().trim().optional(),
+  salary: z.number().nonnegative().optional(),
   applyInfo: z.enum(["WHATSAPP", "EMAIL"], {
     error: "Invalid apply method",
   }),

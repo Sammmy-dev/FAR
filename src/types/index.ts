@@ -47,6 +47,8 @@ export interface IJob {
   location?: string;
   type: JobType;
   qualification?: string;
+  requirements?: string;
+  salary?: number;
   applyInfo: ApplyMethod;
   isVisible: boolean;
   clientId: string | IClient;

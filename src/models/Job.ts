@@ -7,6 +7,8 @@ export interface IJobDocument extends mongoose.Document {
   location?: string;
   type: JobType;
   qualification?: string;
+  requirements?: string;
+  salary?: number;
   applyInfo: ApplyMethod;
   isVisible: boolean;
   clientId: mongoose.Types.ObjectId;
@@ -25,6 +27,8 @@ const JobSchema = new Schema<IJobDocument>(
       required: true,
     },
     qualification: { type: String, trim: true },
+    requirements: { type: String, trim: true },
+    salary: { type: Number, min: 0 },
     applyInfo: { type: String, enum: ["WHATSAPP", "EMAIL"], required: true },
     isVisible: { type: Boolean, default: true },
     clientId: {

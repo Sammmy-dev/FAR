@@ -4,7 +4,7 @@ import { z } from "zod";
 
 export const JobSchema = z.object({
   title: z.string().min(1, "Job title is required").trim(),
-  description: z.string().min(1, "Description is required").trim(),
+  description: z.string().trim().optional(),
   location: z.string().trim().optional(),
   type: z.enum(["FULL_TIME", "PART_TIME", "CONTRACT", "INTERNSHIP"], {
     error: "Invalid job type",

@@ -43,7 +43,7 @@ export interface IClient {
 export interface IJob {
   _id: string;
   title: string;
-  description: string;
+  description?: string;
   location?: string;
   type: JobType;
   qualification?: string;

@@ -3,7 +3,7 @@ import type { JobType, ApplyMethod } from "@/types";
 
 export interface IJobDocument extends mongoose.Document {
   title: string;
-  description: string;
+  description?: string;
   location?: string;
   type: JobType;
   qualification?: string;
@@ -19,7 +19,7 @@ export interface IJobDocument extends mongoose.Document {
 const JobSchema = new Schema<IJobDocument>(
   {
     title: { type: String, required: true, trim: true },
-    description: { type: String, required: true, trim: true },
+    description: { type: String, trim: true },
     location: { type: String, trim: true },
     type: {
       type: String,

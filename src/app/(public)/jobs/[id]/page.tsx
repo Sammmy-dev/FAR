@@ -30,7 +30,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   if (!job) return { title: "Job Not Found" };
   return {
     title: job.title,
-    description: job.description.slice(0, 155),
+    description: (job.description ?? "").slice(0, 155),
   };
 }
 

@@ -111,10 +111,9 @@ export default function JobForm({ clients, job }: Props) {
       </div>
 
       <div>
-        <label className={labelClass}>Description *</label>
+        <label className={labelClass}>Description</label>
         <textarea
           className={`${inputClass} min-h-[140px] resize-y`}
-          required
           value={form.description}
           onChange={(e) => set("description", e.target.value)}
           placeholder="Role description, responsibilities, requirements…"

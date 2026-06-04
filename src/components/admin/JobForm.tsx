@@ -1,9 +1,10 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
 import type { IJob, IClient } from "@/types";
+import WhatsAppJobPreview from "./WhatsAppJobPreview";
 
 interface Props {
   clients: IClient[];
@@ -78,8 +79,15 @@ export default function JobForm({ clients, job }: Props) {
     "w-full border-0 border-b border-neutral-300 bg-transparent px-0 py-2 text-sm focus:outline-none focus:border-brand-600 transition-colors placeholder:text-neutral-400";
   const labelClass = "block text-xs font-semibold uppercase tracking-[0.08em] text-neutral-500 mb-2";
 
+  // Get the selected client object for preview
+  const selectedClient = useMemo(
+    () => clients.find((c) => c._id === form.clientId) || null,
+    [clients, form.clientId]
+  );
+
   return (
-    <form onSubmit={handleSubmit} className="space-y-7 rounded bg-surface-lowest p-8">
+    <div className="space-y-8">
+      <form onSubmit={handleSubmit} className="space-y-7 rounded bg-surface-lowest p-8">
       <div>
         <label className={labelClass}>Job Title *</label>
         <input className={inputClass} required value={form.title} onChange={(e) => set("title", e.target.value)} />
@@ -196,6 +204,21 @@ export default function JobForm({ clients, job }: Props) {
           Cancel
         </button>
       </div>
-    </form>
+      </form>
+
+      {/* WhatsApp Preview Section */}
+      <div className="rounded bg-surface-lowest p-6">
+        <WhatsAppJobPreview
+          title={form.title}
+          client={selectedClient}
+          location={form.location}
+          salary={form.salary}
+          qualification={form.qualification}
+          requirements={form.requirements}
+          description={form.description}
+          applyInfo={form.applyInfo as "WHATSAPP" | "EMAIL"}
+        />
+      </div>
+    </div>
   );
 }

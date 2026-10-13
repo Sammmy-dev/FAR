@@ -252,8 +252,12 @@ export default function AboutPage() {
           {/* Lead Consultant */}
           <div className="mb-10 flex justify-center">
             <div className="w-full max-w-sm rounded bg-brand-gradient p-8 text-center text-white">
-              <div className="mx-auto mb-5 flex h-28 w-28 items-center justify-center overflow-hidden rounded-full bg-white/20 ring-4 ring-white/30">
-                <HiUser className="h-20 w-20 text-white/60" />
+              <div className="mx-auto mb-5 flex h-36 w-36 items-center justify-center overflow-hidden rounded-full bg-white/20 ring-4 ring-white/30">
+                <img
+                  src="/Victor-Ehis.jpeg"
+                  alt="Victor Ehis Usifor"
+                  className="h-full w-full object-cover"
+                />
               </div>
               <h3 className="mb-1 text-xl font-extrabold">Victor Ehis Usifor</h3>
               <p className="mb-3 text-sm font-semibold uppercase tracking-widest text-white/70">
@@ -265,21 +269,44 @@ export default function AboutPage() {
             </div>
           </div>
 
+          {/* Manager */}
+          <div className="mb-10 flex justify-center">
+            <div className="w-full max-w-sm rounded bg-surface p-8 text-center border-ghost">
+              <div className="mx-auto mb-5 flex h-36 w-36 items-center justify-center overflow-hidden rounded-full bg-brand-50 ring-4 ring-brand-100">
+                <img
+                  src="/Sunday-Ayobami.jpeg"
+                  alt="Sunday Ayobami"
+                  className="h-full w-full object-cover"
+                />
+              </div>
+              <h3 className="mb-1 text-xl font-extrabold text-neutral-900">Sunday Ayobami</h3>
+              <p className="mb-3 text-xs font-semibold uppercase tracking-widest text-brand-500">
+                Manager
+              </p>
+              <p className="text-sm text-neutral-600 leading-relaxed">
+                Oversees operations and project delivery, ensuring seamless execution and client satisfaction across all engagements.
+              </p>
+            </div>
+          </div>
+
           {/* HR Assistants */}
           <div className="grid gap-6 sm:grid-cols-3">
             {[
               {
                 name: "Esther Olagoke",
+                image: "/Esther.jpeg",
                 description:
                   "Supports talent sourcing and candidate screening, ensuring every shortlist meets the highest quality standards.",
               },
               {
                 name: "Samuel Ajiboye",
+                image: "/Samuel.jpeg",
                 description:
                   "Coordinates employee onboarding and deployment logistics, keeping client engagements running smoothly.",
               },
               {
                 name: "Comfort John Musa",
+                image: "/Comfort.jpeg",
                 description:
                   "Manages training programme scheduling and development tracking, helping deployed staff grow in their roles.",
               },
@@ -288,8 +315,12 @@ export default function AboutPage() {
                 key={i}
                 className="rounded bg-surface p-7 text-center border-ghost"
               >
-                <div className="mx-auto mb-5 flex h-24 w-24 items-center justify-center overflow-hidden rounded-full bg-brand-50 ring-4 ring-brand-100">
-                  <HiUser className="h-16 w-16 text-brand-300" />
+                <div className="mx-auto mb-5 flex h-32 w-32 items-center justify-center overflow-hidden rounded-full bg-brand-50 ring-4 ring-brand-100">
+                  <img
+                    src={member.image}
+                    alt={member.name}
+                    className="h-full w-full object-cover"
+                  />
                 </div>
                 <h3 className="mb-1 text-base font-extrabold text-neutral-900">{member.name}</h3>
                 <p className="mb-3 text-xs font-semibold uppercase tracking-widest text-brand-500">

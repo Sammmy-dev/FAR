@@ -13,7 +13,6 @@ import {
   HiLightningBolt,
   HiShieldCheck,
   HiStar,
-  HiUser,
 } from "react-icons/hi";
 
 export const metadata: Metadata = {
@@ -251,21 +250,66 @@ export default function AboutPage() {
 
           {/* Lead Consultant */}
           <div className="mb-10 flex justify-center">
-            <div className="w-full max-w-sm rounded bg-brand-gradient p-8 text-center text-white">
-              <div className="mx-auto mb-5 flex h-36 w-36 items-center justify-center overflow-hidden rounded-full bg-white/20 ring-4 ring-white/30">
-                <img
-                  src="/Victor-Ehis.jpeg"
-                  alt="Victor Ehis Usifor"
-                  className="h-full w-full object-cover"
-                />
+            <div className="grid w-full max-w-5xl overflow-hidden rounded bg-brand-gradient text-white shadow-lg md:grid-cols-[260px_1fr]">
+              <div className="flex flex-col items-center justify-center p-8 text-center">
+                <div className="mb-5 flex h-40 w-40 items-center justify-center overflow-hidden rounded-full bg-white/20 ring-4 ring-white/30">
+                  <img
+                    src="/Victor-Ehis.jpeg"
+                    alt="Victor Ehis Usifoh"
+                    className="h-full w-full object-cover"
+                  />
+                </div>
+                <h3 className="mb-1 text-2xl font-extrabold">Victor Ehis Usifoh</h3>
+                <p className="mb-3 text-sm font-semibold uppercase tracking-widest text-white/75">
+                  Lead Consultant
+                </p>
+                <p className="text-sm text-white/75">From Edo State, Nigeria</p>
               </div>
-              <h3 className="mb-1 text-xl font-extrabold">Victor Ehis Usifor</h3>
-              <p className="mb-3 text-sm font-semibold uppercase tracking-widest text-white/70">
-                Lead Consultant
-              </p>
-              <p className="text-sm text-white/80 leading-relaxed">
-                Drives FAR&apos;s overall service strategy and client relationships, bringing deep expertise across recruitment, workforce management, and business consulting.
-              </p>
+
+              <div className="border-t border-white/15 p-8 md:border-l md:border-t-0 md:p-10">
+                <p className="mb-3 text-xs font-semibold uppercase tracking-[0.15em] text-white/70">
+                  Human Resources & Business Management
+                </p>
+                <h4 className="mb-4 text-2xl font-bold sm:text-3xl">
+                  Certified people and business development professional
+                </h4>
+                <div className="mb-6 flex flex-wrap gap-2">
+                  {["CHRP", "SPHR", "CPLP"].map((credential) => (
+                    <span
+                      key={credential}
+                      className="rounded-full border border-white/30 bg-white/10 px-3 py-1 text-xs font-bold tracking-wide"
+                    >
+                      {credential}
+                    </span>
+                  ))}
+                </div>
+                <p className="mb-6 text-sm leading-relaxed text-white/85">
+                  Victor is a recruitment specialist, training and development expert, and strategic management practitioner. He is also a business management consultant, development manager, career coach, lecturer in human resource management and health and safety, and research specialist.
+                </p>
+
+                <div className="mb-6">
+                  <h5 className="mb-2 text-xs font-bold uppercase tracking-widest text-white/70">
+                    Education
+                  </h5>
+                  <p className="text-sm leading-relaxed text-white/85">
+                    Graduate in Computer Science from Landmark University, Omu-Aran, Kwara State; holds a PGD in Human Resources Management and an MBA in Business Administration.
+                  </p>
+                </div>
+
+                <div className="mb-6">
+                  <h5 className="mb-2 text-xs font-bold uppercase tracking-widest text-white/70">
+                    Specialisms
+                  </h5>
+                  <p className="text-sm leading-relaxed text-white/85">
+                    Health, safety and environment (HSE), public speaking instruction, workplace training, and business promotion. He also manages social media for several organizations and is a member of the Chartered Institute of Human Resource Management.
+                  </p>
+                </div>
+
+                <p className="border-l-2 border-white/50 pl-4 text-sm italic leading-relaxed text-white/90">
+                  Passionate about capacity building, Victor is committed to redirecting young people&apos;s energy into creativity and self-sustainability.
+                </p>
+                <p className="mt-4 text-xs text-white/70">Victor is married.</p>
+              </div>
             </div>
           </div>
 
